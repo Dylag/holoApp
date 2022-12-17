@@ -13,4 +13,5 @@
     <string name="activity_gif_previous_gif">Предыдущее Gif</string>
     <string name="activity_gif_next_gif">Следущее Gif</string>
     <string name="activity_main_static_image">Статическое изображение</string>
+    <string name="activity_main_4side">4 - стороннее изображение</string>
 </resources>

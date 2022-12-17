@@ -17,7 +17,6 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.FileProvider
 import com.example.holoappkotlin.databinding.ActivityPhotoBinding
 import com.ortiz.touchview.TouchImageView.OnTouchImageViewListener
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_photo.*
 import java.io.File
 import java.io.IOException
@@ -49,6 +48,8 @@ class PhotoActivity : AppCompatActivity() {
         binding = ActivityPhotoBinding.inflate(layoutInflater)
         val photoview = binding.root
         setContentView(photoview)
+
+        Log.d("personalMaid", "photo on create")
 
         darkerForegroundColor = activity_photo_controlGrid.foreground
         activity_photo_controlGrid.foreground = null

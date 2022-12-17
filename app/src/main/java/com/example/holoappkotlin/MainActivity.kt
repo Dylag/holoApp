@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
+import android.provider.ContactsContract.CommonDataKinds.Photo
 import android.provider.MediaStore
 import android.util.Log
 import android.view.Gravity
@@ -32,7 +33,6 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var photoPopup:PopupWindow
 
-//    var popup_dismissed:Boolean = false
 
     var popup_isActive = false
 
@@ -128,7 +128,13 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(Intent.createChooser(videoGalleryIntent, "Select a file"), REQUEST_CODE_VIDEO_FROM_GALLERY)
     }
 
-
+    fun fsideCard_onClick(view:View)
+    {
+        Log.d("personalMaid", "btn was pressed")
+        val fsideIntent = Intent(this,fsideActivity::class.java)
+        Log.d("personalMaid", "intent created")
+        startActivity(fsideIntent)
+    }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         Log.d("touch",event?.action.toString())
