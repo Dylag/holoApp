@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_main_choose_an_image">Выберете опцию</string>
+    <string name="activity_main_gif">Gif</string>
+    <string name="activity_main_video">Видео</string>
+    <string name="activity_main_exit">Выход</string>
+    <string name="layout_photo_popup_from_gallery">Из галереи...</string>
+    <string name="layout_photo_popup_take_a_photo">Новое изображение...</string>
+    <string name="activity_photo_choose_new_image">Выбрать новое изображение</string>
+    <string name="activity_photo_resize_image">Править изображение</string>
+    <string name="activity_photo_previous_image">Предыдущее изображение</string>
+    <string name="activity_photo_next_image">Следующее изображение</string>
+    <string name="activity_gif_previous_gif">Предыдущее Gif</string>
+    <string name="activity_gif_next_gif">Следущее Gif</string>
+    <string name="activity_main_static_image">Статическое изображение</string>
+</resources>

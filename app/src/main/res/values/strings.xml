@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name" translatable="false">HoloShower</string>
+    <string name="activity_main_choose_an_image">Choose an option</string>
+    <string name="activity_main_static_image">Static image</string>
+    <string name="activity_main_gif">Gif</string>
+    <string name="activity_main_video">Video</string>
+    <string name="activity_main_exit">Exit</string>
+
+    <string name="layout_photo_popup_from_gallery">From gallery…</string>
+    <string name="layout_photo_popup_take_a_photo">Take a photo…</string>
+
+    <string name="activity_photo_choose_new_image">Choose new image</string>
+    <string name="activity_photo_resize_image">Resize image</string>
+    <string name="activity_photo_previous_image">Previous image</string>
+    <string name="activity_photo_next_image">Next image</string>
+
+    <string name="activity_gif_previous_gif">Previous gif</string>
+    <string name = "activity_gif_next_gif">Next gif</string>
+</resources>
