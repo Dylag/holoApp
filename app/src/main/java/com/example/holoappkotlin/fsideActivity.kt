@@ -2,6 +2,7 @@ package com.example.holoappkotlin
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.PopupWindow
 import androidx.cardview.widget.CardView
 import androidx.core.content.FileProvider
@@ -31,24 +33,27 @@ import kotlinx.android.synthetic.main.activity_fside.nextImageCard
 import kotlinx.android.synthetic.main.activity_fside.pictureGrid
 import kotlinx.android.synthetic.main.activity_fside.prevImageCard
 import kotlinx.android.synthetic.main.activity_photo.*
+import java.net.URI
 
 class fsideActivity : AppCompatActivity() {
+
 
     private lateinit var binding: ActivityFsideBinding
 
     var darkerForegroundColor: Drawable? = null
 
+//    var photoSets = ArrayList<MutableMap<Int, Uri?>>(1)
+   // var photoSets = ArrayList<MutableMap<Int, Uri?>>()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fside)
-
-        Log.d("personalMaid", "fside on create")
 
         binding = ActivityFsideBinding.inflate(layoutInflater)
         val fsideview = binding.root
         setContentView(fsideview)
 
-        Log.d("personalMaid", "photo on create")
 
         darkerForegroundColor = activity_photo_controlGrid.foreground
         activity_photo_controlGrid.foreground = null
@@ -129,20 +134,33 @@ class fsideActivity : AppCompatActivity() {
             when(imageViewPos)
             {
                 0-> {imageViewTop.setImageURI(data!!.data)
+                    Log.d("personal maid", "1")
                     addForward_card.visibility = View.GONE
-                    imageViewTop.visibility = View.VISIBLE}
+                    Log.d("personal maid", "2")
+                    imageViewTop.visibility = View.VISIBLE
+                    Log.d("personal maid", "3")
+//                    photoSets[photoSets.count()-1][0] = data.data
+                    Log.d("personal maid", "4")
+                    chooseNewPhotoCard.isClickable = true
+                    Log.d("personal maid", "5")}
 
                 1-> {imageViewRight.setImageURI(data!!.data)
                     addLeft_card.visibility =View.GONE
-                    imageViewRight.visibility = View.VISIBLE}
+                    imageViewRight.visibility = View.VISIBLE
+                    //photoSets[photoSets.count()-1][1] = data.data
+                    chooseNewPhotoCard.isClickable = true}
 
                 2-> {imageViewBottom.setImageURI(data!!.data)
                     addBackward_card.visibility = View.GONE
-                    imageViewBottom.visibility = View.VISIBLE}
+                    imageViewBottom.visibility = View.VISIBLE
+                    //photoSets[photoSets.count()-1][2] = data.data
+                    chooseNewPhotoCard.isClickable = true}
 
                 3-> {imageViewLeft.setImageURI(data!!.data)
                     addRight_card.visibility = View.GONE
-                    imageViewLeft.visibility = View.VISIBLE}
+                    imageViewLeft.visibility = View.VISIBLE
+                   // photoSets[photoSets.count()-1][3] = data.data
+                    chooseNewPhotoCard.isClickable = true}
             }
         }
     }
@@ -157,13 +175,11 @@ class fsideActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (correctImageTIV.visibility == View.INVISIBLE)
             super.onBackPressed()
-        if(correctImageTIV.visibility == View.VISIBLE)
-        {
+        if(correctImageTIV.visibility == View.VISIBLE) {
             cards_turnIsClickable()
             correctImageTIV.visibility = View.INVISIBLE
             activity_photo_controlGrid.foreground = null
         }
-
     }
 
 
@@ -175,5 +191,22 @@ class fsideActivity : AppCompatActivity() {
 
         correctImageCard.isClickable = !correctImageCard.isClickable
         chooseNewPhotoCard.isClickable = correctImageCard.isClickable
+    }
+
+    fun chooseNewPhoto(view:View)
+    {
+        addForward_card.visibility = View.VISIBLE
+        addRight_card.visibility = View.VISIBLE
+        addBackward_card.visibility = View.VISIBLE
+        addLeft_card.visibility = View.VISIBLE
+
+        imageViewTop.visibility = View.INVISIBLE
+        imageViewRight.visibility = View.INVISIBLE
+        imageViewBottom.visibility = View.INVISIBLE
+        imageViewLeft.visibility = View.INVISIBLE
+
+        //im so sorry for this >-<       :''(            I'll fix it ASAP
+       // photoSets.add({} as MutableMap<Int, Uri?>)
+
     }
 }
