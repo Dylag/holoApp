@@ -9,7 +9,7 @@ import android.widget.MediaController
 import android.widget.Toast
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
-
+import com.example.holoappkotlin.databinding.ActivityVideoBinding
 
 
 class VideoActivity : AppCompatActivity() {
@@ -17,19 +17,24 @@ class VideoActivity : AppCompatActivity() {
     val videViewsHadPrepared = mutableListOf<Boolean>(false,false,false,false)
     var globalMediaController: MediaController = MediaController(this)
 
+
+    private lateinit var binding:ActivityVideoBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_video)
+
+        binding = ActivityVideoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         Toast.makeText(this,"123",Toast.LENGTH_LONG).show()
 
 
-        videoViewTop.setVideoURI(Uri.parse(intent.getStringArrayListExtra("uris")!![0]))
-        videoViewRight.setVideoURI(Uri.parse(intent.getStringArrayListExtra("uris")!![0]))
-        videoViewBottom.setVideoURI(Uri.parse(intent.getStringArrayListExtra("uris")!![0]))
-        videoViewLeft.setVideoURI(Uri.parse(intent.getStringArrayListExtra("uris")!![0]))
+        binding.videoViewTop.setVideoURI(Uri.parse(intent.getStringArrayListExtra("uris")!![0]))
+        binding.videoViewRight.setVideoURI(Uri.parse(intent.getStringArrayListExtra("uris")!![0]))
+        binding.videoViewBottom.setVideoURI(Uri.parse(intent.getStringArrayListExtra("uris")!![0]))
+        binding.videoViewLeft.setVideoURI(Uri.parse(intent.getStringArrayListExtra("uris")!![0]))
 
 
-        videoViewTop.start()
+        binding.videoViewTop.start()
 //        videoViewRight.start()
 //        videoViewBottom.start()
 //        videoViewLeft.start()

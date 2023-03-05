@@ -44,18 +44,18 @@ class SpinningActivity : AppCompatActivity() {
             }
 
             runBlocking {
-                launch { imageViewTop.setImageURI(imagesSources[ids[0]]); imageViewTop.setZoom(correctImageTIV)}
-                launch  {imageViewRight.setImageURI(imagesSources[ids[1]]); imageViewRight.setZoom(correctImageTIV)}
-                launch  {imageViewBottom.setImageURI(imagesSources[ids[2]]); imageViewBottom.setZoom(correctImageTIV)}
-                launch  {imageViewLeft.setImageURI(imagesSources[ids[3]]); imageViewLeft.setZoom(correctImageTIV)}
+                launch  {binding.imageViewTop.setImageURI(imagesSources[ids[0]]); binding.imageViewTop.setZoom(binding.correctImageTIV)}
+                launch  {binding.imageViewRight.setImageURI(imagesSources[ids[1]]); binding.imageViewRight.setZoom(binding.correctImageTIV)}
+                launch  {binding.imageViewBottom.setImageURI(imagesSources[ids[2]]); binding.imageViewBottom.setZoom(binding.correctImageTIV)}
+                launch  {binding.imageViewLeft.setImageURI(imagesSources[ids[3]]); binding.imageViewLeft.setZoom(binding.correctImageTIV)}
             }
 
-            imageViewTop.setImageURI(imagesSources[ids[0]]); imageViewTop.setZoom(correctImageTIV)
-            imageViewRight.setImageURI(imagesSources[ids[1]]); imageViewRight.setZoom(correctImageTIV)
-            imageViewBottom.setImageURI(imagesSources[ids[2]]); imageViewBottom.setZoom(correctImageTIV)
-            imageViewLeft.setImageURI(imagesSources[ids[3]]); imageViewLeft.setZoom(correctImageTIV)
+            binding.imageViewTop.setImageURI(imagesSources[ids[0]]); binding.imageViewTop.setZoom(binding.correctImageTIV)
+            binding.imageViewRight.setImageURI(imagesSources[ids[1]]); binding.imageViewRight.setZoom(binding.correctImageTIV)
+            binding.imageViewBottom.setImageURI(imagesSources[ids[2]]); binding.imageViewBottom.setZoom(binding.correctImageTIV)
+            binding.imageViewLeft.setImageURI(imagesSources[ids[3]]); binding.imageViewLeft.setZoom(binding.correctImageTIV)
 
-            Log.d("maid", "bottom ${imageViewBottom.scrollPosition} TIV ${correctImageTIV.scrollPosition}")
+            Log.d("maid", "bottom ${binding.imageViewBottom.scrollPosition} TIV ${binding.correctImageTIV.scrollPosition}")
 
         }
 
@@ -77,15 +77,14 @@ class SpinningActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivitySpinningBinding.inflate(layoutInflater)
-        val photoview = binding.root
-        setContentView(photoview)
+        setContentView(binding.root)
 
-        darkerForegroundColor = activity_spin_controlGrid.foreground
-        activity_spin_controlGrid.foreground = null
-        fpsSetter_seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+        darkerForegroundColor = binding.controlGrid.foreground
+        binding.controlGrid.foreground = null
+        binding.delaySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                var fps:Float = (fpsSetter_seekBar.progress)/20f
-                activity_spin_debugTV.text = fps.toString()
+                var fps:Float = (binding.delaySeekBar.progress)/20f
+                binding.debugTV.text = fps.toString()
 
                 timer.delay = 1000f/fps
             }
@@ -132,30 +131,30 @@ class SpinningActivity : AppCompatActivity() {
 
     fun correctImageCard_onClick(view:View) {
         turn_controls_isClicable()
-        correctImageTIV.visibility = View.VISIBLE
-        activity_spin_controlGrid.foreground = darkerForegroundColor
+        binding.correctImageTIV.visibility = View.VISIBLE
+        binding.controlGrid.foreground = darkerForegroundColor
     }
 
     fun turn_controls_isClicable()
     {
-        chooseNewImageCard.isClickable = !chooseNewImageCard.isClickable
-        correctImageCard.isClickable = chooseNewImageCard.isClickable
+        binding.chooseNewImageCard.isClickable = !binding.chooseNewImageCard.isClickable
+        binding.correctImageCard.isClickable = binding.chooseNewImageCard.isClickable
 
-        if(fpsSetter_seekBar.visibility == View.GONE)
-            fpsSetter_seekBar.visibility = View.VISIBLE
+        if(binding.delaySeekBar.visibility == View.GONE)
+            binding.delaySeekBar.visibility = View.VISIBLE
         else
-            fpsSetter_seekBar.visibility = View.GONE
+            binding.delaySeekBar.visibility = View.GONE
 
     }
 
     override fun onBackPressed() {
-        if (correctImageTIV.visibility == View.INVISIBLE)
+        if (binding.correctImageTIV.visibility == View.INVISIBLE)
             super.onBackPressed()
-        if(correctImageTIV.visibility == View.VISIBLE)
+        if(binding.correctImageTIV.visibility == View.VISIBLE)
         {
             turn_controls_isClicable()
-            correctImageTIV.visibility = View.INVISIBLE
-            activity_spin_controlGrid.foreground = null
+            binding.correctImageTIV.visibility = View.INVISIBLE
+            binding.correctImageTIV.foreground = null
         }
 
 
@@ -175,15 +174,15 @@ class SpinningActivity : AppCompatActivity() {
                     Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
                 else
                 {
-                    addForward_card.visibility = View.GONE
-                    addLeft_card.visibility = View.GONE
-                    addRight_card.visibility = View.GONE
-                    addBackward_card.visibility = View.GONE
+                    binding.addForwardCard.visibility = View.GONE
+                    binding.addLeftCard.visibility = View.GONE
+                    binding.addRightCard.visibility = View.GONE
+                    binding.addBackwardCard.visibility = View.GONE
 
-                    imageViewTop.visibility = View.VISIBLE
-                    imageViewLeft.visibility = View.VISIBLE
-                    imageViewBottom.visibility = View.VISIBLE
-                    imageViewRight.visibility = View.VISIBLE
+                    binding.imageViewTop.visibility = View.VISIBLE
+                    binding.imageViewLeft.visibility = View.VISIBLE
+                    binding.imageViewBottom.visibility = View.VISIBLE
+                    binding.imageViewRight.visibility = View.VISIBLE
 
 
 
@@ -191,7 +190,7 @@ class SpinningActivity : AppCompatActivity() {
 
                     timer.delay = 1000f/fps
                     timer.time = (timer.delay+1).toInt()
-                    activity_spin_debugTV.text = timer.delay.toString()
+                    binding.debugTV.text = timer.delay.toString()
                     for (i in 0 until data.clipData!!.itemCount)
                         imagesSources.add(data.clipData!!.getItemAt(i).uri)
 
