@@ -51,8 +51,8 @@ class PhotoActivity : AppCompatActivity() {
 
         Log.d("personalMaid", "photo on create")
 
-        darkerForegroundColor = activity_photo_controlGrid.foreground
-        activity_photo_controlGrid.foreground = null
+        darkerForegroundColor = activity_spin_controlGrid.foreground
+        activity_spin_controlGrid.foreground = null
 
         val dm = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(dm)
@@ -189,14 +189,13 @@ class PhotoActivity : AppCompatActivity() {
         if (currentImageId==-1)
             currentImageId+=images.count()
         setImageUri()
-
     }
 
     fun correctImage(view:View)
     {
         cards_turnIsClickable()
         correctImageTIV.visibility = View.VISIBLE
-        activity_photo_controlGrid.foreground = darkerForegroundColor
+        activity_spin_controlGrid.foreground = darkerForegroundColor
 
     }
 
@@ -216,7 +215,7 @@ class PhotoActivity : AppCompatActivity() {
         {
             cards_turnIsClickable()
             correctImageTIV.visibility = View.INVISIBLE
-            activity_photo_controlGrid.foreground = null
+            activity_spin_controlGrid.foreground = null
         }
         if (popup_isActive)
         {
@@ -235,7 +234,7 @@ class PhotoActivity : AppCompatActivity() {
         prevImageCard.isClickable = false
 
         correctImageCard.isClickable = !correctImageCard.isClickable
-        chooseNewPhotoCard.isClickable = correctImageCard.isClickable
+        chooseNewImageCard.isClickable = correctImageCard.isClickable
 
         if (correctImageCard.isClickable)
             if(images.count() > 1)

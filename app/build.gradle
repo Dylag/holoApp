@@ -55,5 +55,7 @@ dependencies {
 
     implementation 'com.warnyul.android.fast-video-view:fast-video-view:1.0.2'
 
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+
 
 }

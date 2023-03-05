@@ -11,12 +11,12 @@
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/activity_photo_debugTV"
+            android:layout_height="wrap_content" android:id="@+id/activity_spin_debugTV"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
             android:visibility="visible"/>
     <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp" android:id="@+id/activity_photo_controlGrid"
+            android:layout_height="0dp" android:id="@+id/activity_spin_controlGrid"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/pictureGrid"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:rowCount="3"
             app:columnCount="2" app:layout_constraintHorizontal_bias="1.0" app:layout_constraintVertical_bias="0.0"
@@ -69,7 +69,7 @@
                 app:layout_row="0"
                 app:layout_column="0"
 
-                android:id="@+id/chooseNewPhotoCard"
+                android:id="@+id/chooseNewImageCard"
                 android:layout_marginLeft="20dp" android:layout_marginTop="10dp" android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp" android:onClick="chooseNewPhoto">
             <TextView

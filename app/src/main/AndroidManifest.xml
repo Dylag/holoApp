@@ -20,7 +20,10 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.HoloAppKotlin">
         <activity
-                android:name=".fsideActivity"
+                android:name=".SpinningActivity"
+                android:exported="false"/>
+        <activity
+                android:name=".FsideActivity"
                 android:exported="false"/>
         <activity
                 android:name=".VideoActivity"

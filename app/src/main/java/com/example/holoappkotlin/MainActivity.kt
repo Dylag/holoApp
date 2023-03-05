@@ -6,7 +6,6 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
-import android.provider.ContactsContract.CommonDataKinds.Photo
 import android.provider.MediaStore
 import android.util.Log
 import android.view.Gravity
@@ -46,6 +45,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         photoPopup = PopupWindow(this)
         val view =layoutInflater.inflate(R.layout.layout_photo_popup,null)
@@ -130,12 +130,13 @@ class MainActivity : AppCompatActivity() {
 
     fun fsideCard_onClick(view:View)
     {
-        Log.d("personalMaid", "btn was pressed")
-        val fsideIntent = Intent(this,fsideActivity::class.java)
-        Log.d("personalMaid", "intent created")
-        startActivity(fsideIntent)
+        startActivity(Intent(this,FsideActivity::class.java))
     }
 
+    fun spinCard_onClick(view:View)
+    {
+        startActivity(Intent(this, SpinningActivity::class.java))
+    }
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         Log.d("touch",event?.action.toString())
 //        if (event?.action == MotionEvent.ACTION_UP)
