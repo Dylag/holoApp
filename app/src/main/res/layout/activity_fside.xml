@@ -6,18 +6,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".FsideActivity"
-        android:background="#000000">
+        android:background="#000000" android:id="@+id/rootView">
 
 
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/activity_spin_debugTV"
+            android:layout_height="wrap_content" android:id="@+id/debugTV"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
             android:visibility="visible"/>
     <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp" android:id="@+id/activity_spin_controlGrid"
+            android:layout_height="0dp" android:id="@+id/controlGrid"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/pictureGrid"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:rowCount="3"
             app:columnCount="2" app:layout_constraintHorizontal_bias="1.0" app:layout_constraintVertical_bias="0.0"
@@ -91,7 +91,7 @@
 
                 android:id="@+id/correctImageCard"
                 android:layout_marginLeft="10dp" android:layout_marginTop="10dp" android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp" android:onClick="correctImage_card_onClick">
+                android:layout_marginBottom="10dp" android:onClick="correctImageCard_onClick">
             <TextView
                     android:text="@string/activity_photo_resize_image"
                     android:layout_width="wrap_content"
@@ -188,8 +188,8 @@
                 style="@style/mainClickableCardStyle"
                 android:layout_height="0dp"
                 android:layout_width="0dp"
-                android:layout_margin="20dp" android:id="@+id/addForward_card"
-                android:onClick="addForward_card_clicked">
+                android:layout_margin="20dp" android:id="@+id/addForwardCard"
+                android:onClick="addForwardCard_onClick">
 
             <TextView
                     android:text="add forward"
@@ -206,7 +206,7 @@
                 style="@style/mainClickableCardStyle"
                 android:layout_height="0dp"
                 android:layout_width="0dp"
-                android:layout_margin="20dp" android:id="@+id/addLeft_card" android:onClick="addLeft_card_clicked">
+                android:layout_margin="20dp" android:id="@+id/addLeftCard" android:onClick="addLeftCard_onClick">
 
             <TextView
                     android:text="add left"
@@ -223,8 +223,8 @@
                 style="@style/mainClickableCardStyle"
                 android:layout_height="0dp"
                 android:layout_width="0dp"
-                android:layout_margin="20dp" android:id="@+id/addBackward_card"
-                android:onClick="addBackward_card_clicked">
+                android:layout_margin="20dp" android:id="@+id/addBackwardCard"
+                android:onClick="addBackwardCard_onClick">
 
             <TextView
                     android:text="add backward"
@@ -241,7 +241,7 @@
                 style="@style/mainClickableCardStyle"
                 android:layout_height="0dp"
                 android:layout_width="0dp"
-                android:layout_margin="20dp" android:id="@+id/addRight_card" android:onClick="addRight_card_clicked">
+                android:layout_margin="20dp" android:id="@+id/addRightCard" android:onClick="addRightCard_onClick">
 
             <TextView
                     android:text="add right"

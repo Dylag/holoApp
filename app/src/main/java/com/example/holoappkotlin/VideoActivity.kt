@@ -9,7 +9,7 @@ import android.widget.MediaController
 import android.widget.Toast
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_video.*
+
 
 
 class VideoActivity : AppCompatActivity() {

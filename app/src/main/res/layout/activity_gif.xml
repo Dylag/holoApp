@@ -5,10 +5,10 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".GifActivity" android:background="#000000">
+        tools:context=".GifActivity" android:background="#000000" android:id="@+id/rootView">
     <androidx.gridlayout.widget.GridLayout
             android:layout_width="0dp"
-            android:layout_height="0dp" android:id="@+id/activity_gif_controlGrid" app:columnCount="2"
+            android:layout_height="0dp" android:id="@+id/controlGrid" app:columnCount="2"
             app:rowCount="2" app:layout_constraintTop_toBottomOf="@+id/gifGrid"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +53,7 @@
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1" android:layout_marginLeft="20dp" android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp" android:layout_marginBottom="10dp"
-                android:id="@+id/activity_gif_seekBar"/>
+                android:id="@+id/scaleSeekBar"/>
     </androidx.gridlayout.widget.GridLayout>
     <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"

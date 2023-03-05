@@ -17,7 +17,8 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.FileProvider
 import com.example.holoappkotlin.databinding.ActivityPhotoBinding
 import com.ortiz.touchview.TouchImageView.OnTouchImageViewListener
-import kotlinx.android.synthetic.main.activity_photo.*
+import RequestCodes
+
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -25,10 +26,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class PhotoActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityPhotoBinding
-
-    var REQUEST_CODE_GALLERY = 0
-    var REQUEST_CODE_PHOTO_CAPTURE = 1
 
     var images = ArrayList<String>()
     var currentImageId = 0
@@ -42,28 +39,28 @@ class PhotoActivity : AppCompatActivity() {
     lateinit var newPhotoUri:Uri
     lateinit var currentPhotoPath: String
 
+    private lateinit var binding: ActivityPhotoBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityPhotoBinding.inflate(layoutInflater)
-        val photoview = binding.root
-        setContentView(photoview)
+        setContentView(binding.root)
 
         Log.d("personalMaid", "photo on create")
 
-        darkerForegroundColor = activity_spin_controlGrid.foreground
-        activity_spin_controlGrid.foreground = null
+        darkerForegroundColor = binding.root.foreground
+        binding.root.foreground = null
 
         val dm = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(dm)
-        pictureGrid.layoutParams.height = dm.widthPixels
+        binding.pictureGrid.layoutParams.height = dm.widthPixels
 
 
 
-        imageViewTop.maxZoom = 4f
-        imageViewRight.maxZoom = 4f
-        imageViewBottom.maxZoom = 4f
-        imageViewLeft.maxZoom = 4f
+        binding.imageViewTop.maxZoom = 4f
+        binding.imageViewRight.maxZoom = 4f
+        binding.imageViewBottom.maxZoom = 4f
+        binding.imageViewLeft.maxZoom = 4f
 
 
         binding.imageViewMain.setOnTouchImageViewListener( object:OnTouchImageViewListener{
@@ -117,16 +114,16 @@ class PhotoActivity : AppCompatActivity() {
 
         if(images.count()==1)
         {
-            nextImageCard.isClickable = false
-            prevImageCard.isClickable = false
+            binding.nextImageCard.isClickable = false
+            binding.prevImageCard.isClickable = false
         }
 
         photoPopup = PopupWindow(this)
-        val view =layoutInflater.inflate(R.layout.layout_photo_popup,null)
-        photoPopup.contentView = view
+        val popupView =layoutInflater.inflate(R.layout.layout_photo_popup,null)
+        photoPopup.contentView = popupView
         photoPopup.setBackgroundDrawable(null)
 
-        view.findViewById<CardView>(R.id.fromGalleryCard).setOnClickListener{
+        popupView.findViewById<CardView>(R.id.fromGalleryCard).setOnClickListener{
             if (!makingChooseIntent)
             {
                 makingChooseIntent = true
@@ -135,15 +132,15 @@ class PhotoActivity : AppCompatActivity() {
                     .setType("image/jpeg")
                     .setAction(Intent.ACTION_GET_CONTENT)
                     .putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true)
-                startActivityForResult(Intent.createChooser(fromGalleryIntent, "Select a file"), REQUEST_CODE_GALLERY)
+                startActivityForResult(Intent.createChooser(fromGalleryIntent, "Select a file"), RequestCodes.GALLERY_PHOTO.ordinal)
             }
             photoPopup.dismiss()
             popup_isActive = false
             cards_turnIsClickable()
-            activity_photo_root.foreground = null
+            binding.root.foreground = null
         }
 
-        view.findViewById<CardView>(R.id.takeAPhotoCard).setOnClickListener{
+        popupView.findViewById<CardView>(R.id.takeAPhotoCard).setOnClickListener{
             Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
                 // Ensure that there's a camera activity to handle the intent
                 takePictureIntent.resolveActivity(packageManager)?.also {
@@ -163,16 +160,15 @@ class PhotoActivity : AppCompatActivity() {
                             it
                         )
                         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, newPhotoUri)
-                        startActivityForResult(takePictureIntent, REQUEST_CODE_PHOTO_CAPTURE)
+                        startActivityForResult(takePictureIntent, RequestCodes.CAPTURE_PHOTO.ordinal)
                     }
                 }
             }
             photoPopup.dismiss()
             popup_isActive = false
             cards_turnIsClickable()
-            activity_photo_root.foreground = null
+            binding.root.foreground = null
         }
-
     }
 
     fun switchToNextImage(view: View)
@@ -181,7 +177,6 @@ class PhotoActivity : AppCompatActivity() {
         if (currentImageId == images.count())
             currentImageId = 0
         setImageUri()
-
     }
     fun switchToPreviousImage(view:View)
     {
@@ -194,35 +189,35 @@ class PhotoActivity : AppCompatActivity() {
     fun correctImage(view:View)
     {
         cards_turnIsClickable()
-        correctImageTIV.visibility = View.VISIBLE
-        activity_spin_controlGrid.foreground = darkerForegroundColor
+        binding.correctImageTIV.visibility = View.VISIBLE
+        binding.root.foreground = darkerForegroundColor
 
     }
 
     fun chooseNewPhoto(view:View)
     {
-        photoPopup.showAtLocation(activity_photo_root, Gravity.CENTER,0,0)
-        activity_photo_root.foreground = darkerForegroundColor
+        photoPopup.showAtLocation( binding.root, Gravity.CENTER,0,0)
+        binding.root.foreground = darkerForegroundColor
         cards_turnIsClickable()
         popup_isActive = true
     }
 
     override fun onBackPressed() {
         Log.d("popup_isActiveState", popup_isActive.toString())
-        if (correctImageTIV.visibility == View.INVISIBLE && !popup_isActive )
+        if (binding.correctImageTIV.visibility == View.INVISIBLE && !popup_isActive )
             super.onBackPressed()
-        if(correctImageTIV.visibility == View.VISIBLE)
+        if(binding.correctImageTIV.visibility == View.VISIBLE)
         {
             cards_turnIsClickable()
-            correctImageTIV.visibility = View.INVISIBLE
-            activity_spin_controlGrid.foreground = null
+            binding.correctImageTIV.visibility = View.INVISIBLE
+            binding.controlGrid.foreground = null
         }
         if (popup_isActive)
         {
             photoPopup.dismiss()
             popup_isActive = false
             cards_turnIsClickable()
-            activity_photo_root.foreground = null
+            binding.root.foreground = null
         }
 
     }
@@ -230,17 +225,17 @@ class PhotoActivity : AppCompatActivity() {
     fun cards_turnIsClickable()
     {
 
-        nextImageCard.isClickable = false
-        prevImageCard.isClickable = false
+        binding.nextImageCard.isClickable = false
+        binding.prevImageCard.isClickable = false
 
-        correctImageCard.isClickable = !correctImageCard.isClickable
-        chooseNewImageCard.isClickable = correctImageCard.isClickable
+        binding.correctImageCard.isClickable = !binding.correctImageCard.isClickable
+        binding.chooseNewImageCard.isClickable = binding.correctImageCard.isClickable
 
-        if (correctImageCard.isClickable)
+        if (binding.correctImageCard.isClickable)
             if(images.count() > 1)
             {
-                nextImageCard.isClickable = true
-                prevImageCard.isClickable = true
+                binding.nextImageCard.isClickable = true
+                binding.prevImageCard.isClickable = true
             }
 
 
@@ -248,10 +243,10 @@ class PhotoActivity : AppCompatActivity() {
 
     fun setImageUri()
     {
-        imageViewTop.setImageURI(Uri.parse(images[currentImageId]))
-        imageViewRight.setImageURI(Uri.parse(images[currentImageId]))
-        imageViewBottom.setImageURI(Uri.parse(images[currentImageId]))
-        imageViewLeft.setImageURI(Uri.parse(images[currentImageId]))
+        binding.imageViewTop.setImageURI(Uri.parse(images[currentImageId]))
+        binding.imageViewRight.setImageURI(Uri.parse(images[currentImageId]))
+        binding.imageViewBottom.setImageURI(Uri.parse(images[currentImageId]))
+        binding. imageViewLeft.setImageURI(Uri.parse(images[currentImageId]))
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -261,7 +256,7 @@ class PhotoActivity : AppCompatActivity() {
         if (event?.action == MotionEvent.ACTION_DOWN)
         {
             photoPopup.dismiss()
-            activity_photo_root.foreground = null
+            binding.root.foreground = null
             cards_turnIsClickable()
             popup_isActive = false
 
@@ -292,7 +287,7 @@ class PhotoActivity : AppCompatActivity() {
         if (resultCode == RESULT_OK) {
             val uri_stringArrayList :ArrayList<String> = ArrayList()
             when (requestCode) {
-                REQUEST_CODE_GALLERY -> {
+                RequestCodes.GALLERY_PHOTO.ordinal -> {
                     val photoIntent = Intent(this, PhotoActivity::class.java)
                     if (data?.clipData != null) {
                         for (i in 0 until data.clipData!!.itemCount) {
@@ -304,7 +299,7 @@ class PhotoActivity : AppCompatActivity() {
 
                 }
 
-                REQUEST_CODE_PHOTO_CAPTURE -> {
+                RequestCodes.CAPTURE_PHOTO.ordinal -> {
                     val photoIntent = Intent(this, PhotoActivity::class.java)
                     uri_stringArrayList.add(newPhotoUri.toString())
                 }
@@ -312,8 +307,8 @@ class PhotoActivity : AppCompatActivity() {
 
             images.addAll(uri_stringArrayList)
 
-            prevImageCard.isClickable = true
-            nextImageCard.isClickable = true
+            binding.prevImageCard.isClickable = true
+            binding.nextImageCard.isClickable = true
 
         }
         makingChooseIntent = false

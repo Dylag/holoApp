@@ -7,55 +7,59 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.widget.SeekBar
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_gif.*
-import kotlinx.android.synthetic.main.activity_photo.*
+import com.example.holoappkotlin.databinding.ActivityGifBinding
+
 
 class GifActivity : AppCompatActivity() {
     var gifs : ArrayList<String> = ArrayList()
 
-    ///WARNING!!! ADD COUROUTINES AND TRY ANOTHER LIB FOR GIF VIEWй
+    ///WARNING!!! ADD COUROUTINES AND TRY ANOTHER LIB FOR GIF VIEW
 
+
+    private lateinit var binding:ActivityGifBinding
 
 
     var currentGifId = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_gif)
+
+        binding = ActivityGifBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val dm = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(dm)
-        gifGrid.layoutParams.height = dm.widthPixels
+        binding.gifGrid.layoutParams.height = dm.widthPixels
 
         gifs = intent.getStringArrayListExtra("uris")!!
 
         Glide.with(this)
             .load(Uri.parse(gifs[0]))
-            .into(gifViewTop)
+            .into(binding.gifViewTop)
         Glide.with(this)
             .load(Uri.parse(gifs[0]))
-            .into(gifViewRight)
+            .into(binding.gifViewRight)
         Glide.with(this)
             .load(Uri.parse(gifs[0]))
-            .into(gifViewBottom)
+            .into(binding.gifViewBottom)
         Glide.with(this)
             .load(Uri.parse(gifs[0]))
-            .into(gifViewLeft)
+            .into(binding.gifViewLeft)
 
-        activity_gif_seekBar.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
+        binding.scaleSeekBar.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 val currentScale = seekBar?.progress!!.toFloat()/100+1
 
-                gifViewTop.scaleX = currentScale
-                gifViewTop.scaleY = currentScale
+                binding.gifViewTop.scaleX = currentScale
+                binding.gifViewTop.scaleY = currentScale
 
-                gifViewRight.scaleX = currentScale
-                gifViewRight.scaleY = currentScale
+                binding.gifViewRight.scaleX = currentScale
+                binding.gifViewRight.scaleY = currentScale
 
-                gifViewBottom.scaleX = currentScale
-                gifViewBottom.scaleY = currentScale
+                binding.gifViewBottom.scaleX = currentScale
+                binding.gifViewBottom.scaleY = currentScale
 
-                gifViewLeft.scaleX = currentScale
-                gifViewLeft.scaleY = currentScale
+                binding.gifViewLeft.scaleX = currentScale
+                binding.gifViewLeft.scaleY = currentScale
 
             }
 
@@ -67,8 +71,8 @@ class GifActivity : AppCompatActivity() {
 
         if (gifs.count() == 1)
         {
-            nextGifCard.isClickable = false
-            prevGifCard.isClickable = false
+            binding.nextGifCard.isClickable = false
+            binding.prevGifCard.isClickable = false
         }
 
     }
@@ -91,10 +95,10 @@ class GifActivity : AppCompatActivity() {
 
     fun setGifUri()
     {
-        Glide.with(this).load(Uri.parse(gifs[currentGifId])).into(gifViewTop)
-        Glide.with(this).load(Uri.parse(gifs[currentGifId])).into(gifViewRight)
-        Glide.with(this).load(Uri.parse(gifs[currentGifId])).into(gifViewBottom)
-        Glide.with(this).load(Uri.parse(gifs[currentGifId])).into(gifViewLeft)
+        Glide.with(this).load(Uri.parse(gifs[currentGifId])).into(binding.gifViewTop)
+        Glide.with(this).load(Uri.parse(gifs[currentGifId])).into(binding.gifViewRight)
+        Glide.with(this).load(Uri.parse(gifs[currentGifId])).into(binding.gifViewBottom)
+        Glide.with(this).load(Uri.parse(gifs[currentGifId])).into(binding.gifViewLeft)
     }
 
 

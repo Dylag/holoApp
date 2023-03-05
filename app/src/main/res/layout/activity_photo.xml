@@ -5,18 +5,18 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".PhotoActivity" android:background="#000000" android:id="@+id/activity_photo_root" >
+        tools:context=".PhotoActivity" android:background="#000000" android:id="@+id/rootView" >
 
 
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/activity_spin_debugTV"
+            android:layout_height="wrap_content" android:id="@+id/debugTV"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
             android:visibility="visible"/>
     <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp" android:id="@+id/activity_spin_controlGrid"
+            android:layout_height="0dp" android:id="@+id/controlGrid"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toBottomOf="@+id/pictureGrid"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:rowCount="3"
             app:columnCount="2" app:layout_constraintHorizontal_bias="1.0" app:layout_constraintVertical_bias="0.0"

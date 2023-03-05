@@ -12,20 +12,6 @@ import android.widget.SeekBar
 import android.widget.Toast
 import com.example.holoappkotlin.databinding.ActivitySpinningBinding
 import com.ortiz.touchview.TouchImageView
-import kotlinx.android.synthetic.main.activity_spinning.*
-import kotlinx.android.synthetic.main.activity_spinning.activity_spin_controlGrid
-import kotlinx.android.synthetic.main.activity_spinning.activity_spin_debugTV
-import kotlinx.android.synthetic.main.activity_spinning.addBackward_card
-import kotlinx.android.synthetic.main.activity_spinning.addForward_card
-import kotlinx.android.synthetic.main.activity_spinning.addLeft_card
-import kotlinx.android.synthetic.main.activity_spinning.addRight_card
-import kotlinx.android.synthetic.main.activity_spinning.chooseNewImageCard
-import kotlinx.android.synthetic.main.activity_spinning.correctImageCard
-import kotlinx.android.synthetic.main.activity_spinning.correctImageTIV
-import kotlinx.android.synthetic.main.activity_spinning.imageViewBottom
-import kotlinx.android.synthetic.main.activity_spinning.imageViewLeft
-import kotlinx.android.synthetic.main.activity_spinning.imageViewRight
-import kotlinx.android.synthetic.main.activity_spinning.imageViewTop
 import kotlinx.coroutines.*
 
 class SpinningActivity : AppCompatActivity() {

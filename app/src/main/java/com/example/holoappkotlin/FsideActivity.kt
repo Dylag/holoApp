@@ -8,19 +8,7 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import com.ortiz.touchview.TouchImageView
-import kotlinx.android.synthetic.main.activity_fside.*
 import com.example.holoappkotlin.databinding.ActivityFsideBinding
-import kotlinx.android.synthetic.main.activity_fside.activity_spin_controlGrid
-import kotlinx.android.synthetic.main.activity_fside.chooseNewImageCard
-import kotlinx.android.synthetic.main.activity_fside.correctImageCard
-import kotlinx.android.synthetic.main.activity_fside.correctImageTIV
-import kotlinx.android.synthetic.main.activity_fside.imageViewBottom
-import kotlinx.android.synthetic.main.activity_fside.imageViewLeft
-import kotlinx.android.synthetic.main.activity_fside.imageViewRight
-import kotlinx.android.synthetic.main.activity_fside.imageViewTop
-import kotlinx.android.synthetic.main.activity_fside.nextImageCard
-import kotlinx.android.synthetic.main.activity_fside.pictureGrid
-import kotlinx.android.synthetic.main.activity_fside.prevImageCard
 
 class FsideActivity : AppCompatActivity() {
 
@@ -38,23 +26,22 @@ class FsideActivity : AppCompatActivity() {
         setContentView(R.layout.activity_fside)
 
         binding = ActivityFsideBinding.inflate(layoutInflater)
-        val fsideview = binding.root
-        setContentView(fsideview)
+        setContentView(binding.root)
 
 
-        darkerForegroundColor = activity_spin_controlGrid.foreground
-        activity_spin_controlGrid.foreground = null
+        darkerForegroundColor = binding.root.foreground
+        binding.controlGrid.foreground = null
 
         val dm = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(dm)
-        pictureGrid.layoutParams.height = dm.widthPixels
+        binding.pictureGrid.layoutParams.height = dm.widthPixels
 
 
 
-        imageViewTop.maxZoom = 4f
-        imageViewRight.maxZoom = 4f
-        imageViewBottom.maxZoom = 4f
-        imageViewLeft.maxZoom = 4f
+        binding.imageViewTop.maxZoom = 4f
+        binding.imageViewRight.maxZoom = 4f
+        binding.imageViewBottom.maxZoom = 4f
+        binding.imageViewLeft.maxZoom = 4f
 
 
         binding.imageViewMain.setOnTouchImageViewListener( object: TouchImageView.OnTouchImageViewListener {
@@ -83,28 +70,28 @@ class FsideActivity : AppCompatActivity() {
     }
 
 
-    fun addForward_card_clicked(view: View)
+    fun addForwardCard_onClick(view: View)
     {
         val fromGalleryIntent = Intent()
             .setType("image/jpeg")
             .setAction(Intent.ACTION_GET_CONTENT)
         startActivityForResult(Intent.createChooser(fromGalleryIntent, "Select a file"), 0)
     }
-    fun addLeft_card_clicked(view: View)
+    fun addLeftCard_onClick(view: View)
     {
         val fromGalleryIntent = Intent()
             .setType("image/jpeg")
             .setAction(Intent.ACTION_GET_CONTENT)
         startActivityForResult(Intent.createChooser(fromGalleryIntent, "Select a file"), 1)
     }
-    fun addBackward_card_clicked(view: View)
+    fun addBackwardCard_onClick(view: View)
     {
         val fromGalleryIntent = Intent()
             .setType("image/jpeg")
             .setAction(Intent.ACTION_GET_CONTENT)
         startActivityForResult(Intent.createChooser(fromGalleryIntent, "Select a file"), 2)
     }
-    fun addRight_card_clicked(view: View)
+    fun addRightCard_onClick(view: View)
     {
         val fromGalleryIntent = Intent()
             .setType("image/jpeg")
@@ -120,52 +107,52 @@ class FsideActivity : AppCompatActivity() {
         {
             when(imageViewPos)
             {
-                0-> {imageViewTop.setImageURI(data!!.data)
+                0-> {binding.imageViewTop.setImageURI(data!!.data)
                     Log.d("personal maid", "1")
-                    addForward_card.visibility = View.GONE
+                    binding.addForwardCard.visibility = View.GONE
                     Log.d("personal maid", "2")
-                    imageViewTop.visibility = View.VISIBLE
+                    binding.imageViewTop.visibility = View.VISIBLE
                     Log.d("personal maid", "3")
 //                    photoSets[photoSets.count()-1][0] = data.data
                     Log.d("personal maid", "4")
-                    chooseNewImageCard.isClickable = true
+                    binding.chooseNewImageCard.isClickable = true
                     Log.d("personal maid", "5")}
 
-                1-> {imageViewRight.setImageURI(data!!.data)
-                    addLeft_card.visibility =View.GONE
-                    imageViewRight.visibility = View.VISIBLE
+                1-> {binding.imageViewRight.setImageURI(data!!.data)
+                    binding.addLeftCard.visibility =View.GONE
+                    binding.imageViewRight.visibility = View.VISIBLE
                     //photoSets[photoSets.count()-1][1] = data.data
-                    chooseNewImageCard.isClickable = true}
+                    binding. chooseNewImageCard.isClickable = true}
 
-                2-> {imageViewBottom.setImageURI(data!!.data)
-                    addBackward_card.visibility = View.GONE
-                    imageViewBottom.visibility = View.VISIBLE
+                2-> {binding.imageViewBottom.setImageURI(data!!.data)
+                    binding.addBackwardCard.visibility = View.GONE
+                    binding.imageViewBottom.visibility = View.VISIBLE
                     //photoSets[photoSets.count()-1][2] = data.data
-                    chooseNewImageCard.isClickable = true}
+                    binding.chooseNewImageCard.isClickable = true}
 
-                3-> {imageViewLeft.setImageURI(data!!.data)
-                    addRight_card.visibility = View.GONE
-                    imageViewLeft.visibility = View.VISIBLE
+                3-> {binding.imageViewLeft.setImageURI(data!!.data)
+                    binding.addRightCard.visibility = View.GONE
+                    binding.imageViewLeft.visibility = View.VISIBLE
                    // photoSets[photoSets.count()-1][3] = data.data
-                    chooseNewImageCard.isClickable = true}
+                    binding.chooseNewImageCard.isClickable = true}
             }
         }
     }
-    fun correctImage_card_onClick(view:View)
+    fun correctImageCard_onClick(view:View)
     {
         cards_turnIsClickable()
-        correctImageTIV.visibility = View.VISIBLE
-        activity_spin_controlGrid.foreground = darkerForegroundColor
+        binding.correctImageTIV.visibility = View.VISIBLE
+        binding.controlGrid.foreground = darkerForegroundColor
 
     }
 
     override fun onBackPressed() {
-        if (correctImageTIV.visibility == View.INVISIBLE)
+        if (binding.correctImageTIV.visibility == View.INVISIBLE)
             super.onBackPressed()
-        if(correctImageTIV.visibility == View.VISIBLE) {
+        if(binding.correctImageTIV.visibility == View.VISIBLE) {
             cards_turnIsClickable()
-            correctImageTIV.visibility = View.INVISIBLE
-            activity_spin_controlGrid.foreground = null
+            binding.correctImageTIV.visibility = View.INVISIBLE
+            binding.controlGrid.foreground = null
         }
     }
 
@@ -173,27 +160,30 @@ class FsideActivity : AppCompatActivity() {
     fun cards_turnIsClickable()
     {
 
-        nextImageCard.isClickable = false
-        prevImageCard.isClickable = false
+        binding.nextImageCard.isClickable = false
+        binding.prevImageCard.isClickable = false
 
-        correctImageCard.isClickable = !correctImageCard.isClickable
-        chooseNewImageCard.isClickable = correctImageCard.isClickable
+        binding.correctImageCard.isClickable = !binding.correctImageCard.isClickable
+        binding.chooseNewImageCard.isClickable = binding.correctImageCard.isClickable
     }
 
     fun chooseNewPhoto(view:View)
     {
-        addForward_card.visibility = View.VISIBLE
-        addRight_card.visibility = View.VISIBLE
-        addBackward_card.visibility = View.VISIBLE
-        addLeft_card.visibility = View.VISIBLE
+        binding.addForwardCard.visibility = View.VISIBLE
+        binding.addRightCard.visibility = View.VISIBLE
+        binding.addBackwardCard.visibility = View.VISIBLE
+        binding.addLeftCard.visibility = View.VISIBLE
 
-        imageViewTop.visibility = View.INVISIBLE
-        imageViewRight.visibility = View.INVISIBLE
-        imageViewBottom.visibility = View.INVISIBLE
-        imageViewLeft.visibility = View.INVISIBLE
+        binding.imageViewTop.visibility = View.INVISIBLE
+        binding.imageViewRight.visibility = View.INVISIBLE
+        binding.imageViewBottom.visibility = View.INVISIBLE
+        binding.imageViewLeft.visibility = View.INVISIBLE
 
         //im so sorry for this >-<       :''(            I'll fix it ASAP
        // photoSets.add({} as MutableMap<Int, Uri?>)
 
+
+
+        //yooooooooo its 05.03.23
     }
 }

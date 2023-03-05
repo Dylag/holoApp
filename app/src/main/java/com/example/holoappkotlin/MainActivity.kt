@@ -14,7 +14,9 @@ import android.view.View
 import android.widget.PopupWindow
 import androidx.cardview.widget.CardView
 import androidx.core.content.FileProvider
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.holoappkotlin.databinding.ActivityMainBinding
+import RequestCodes
+
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -22,12 +24,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
-
-    var REQUEST_CODE_GALLERY = 0
-    var REQUEST_CODE_PHOTO_CAPTURE = 1
-    var REQUEST_CODE_GIF = 2
-    var REQUEST_CODE_VIDEO_FROM_GALLERY = 3
-
     var darkerForegroundColor:Drawable? = null
 
     lateinit var photoPopup:PopupWindow
@@ -42,17 +38,20 @@ class MainActivity : AppCompatActivity() {
     lateinit var currentPhotoPath: String
 
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding  = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
         photoPopup = PopupWindow(this)
-        val view =layoutInflater.inflate(R.layout.layout_photo_popup,null)
-        photoPopup.contentView = view
+        val popupView =layoutInflater.inflate(R.layout.layout_photo_popup,null)
+        photoPopup.contentView = popupView
         photoPopup.setBackgroundDrawable(null)
 
-        view.findViewById<CardView>(R.id.fromGalleryCard).setOnClickListener{
+        popupView.findViewById<CardView>(R.id.fromGalleryCard).setOnClickListener{
             if (!makingChooseIntent)
             {
                 makingChooseIntent = true
@@ -61,11 +60,11 @@ class MainActivity : AppCompatActivity() {
                     .setType("image/jpeg")
                     .setAction(Intent.ACTION_GET_CONTENT)
                     .putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true)
-                startActivityForResult(Intent.createChooser(fromGalleryIntent, "Select a file"), REQUEST_CODE_GALLERY)
+                startActivityForResult(Intent.createChooser(fromGalleryIntent, "Select a file"), RequestCodes.GALLERY_PHOTO.ordinal)
             }
         }
 
-        view.findViewById<CardView>(R.id.takeAPhotoCard).setOnClickListener{
+        popupView.findViewById<CardView>(R.id.takeAPhotoCard).setOnClickListener{
             Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
                 // Ensure that there's a camera activity to handle the intent
                 takePictureIntent.resolveActivity(packageManager)?.also {
@@ -85,24 +84,24 @@ class MainActivity : AppCompatActivity() {
                             it
                         )
                         takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, newPhotoUri)
-                        startActivityForResult(takePictureIntent, REQUEST_CODE_PHOTO_CAPTURE)
+                        startActivityForResult(takePictureIntent, RequestCodes.CAPTURE_PHOTO.ordinal)
                     }
                 }
             }
         }
 
-        darkerForegroundColor = activity_main_constraintLayout.foreground
-        activity_main_constraintLayout.foreground = null
+        darkerForegroundColor = binding.root.foreground
+        binding.root.foreground = null
 
-        exitCard.setOnClickListener {finishAffinity()}
+        binding.exitCard.setOnClickListener {finishAffinity()}
 
     }
 
     fun photoCard_onClick(view: View)
     {
-        photoPopup.showAtLocation(activity_main_constraintLayout,Gravity.CENTER,0,0)
+        photoPopup.showAtLocation(binding.root,Gravity.CENTER,0,0)
 
-        activity_main_constraintLayout.foreground = darkerForegroundColor
+        binding.root.foreground = darkerForegroundColor
 
         turnCards_isEnable(false)
         popup_isActive = true
@@ -115,7 +114,7 @@ class MainActivity : AppCompatActivity() {
             .setType("image/gif")
             .setAction(Intent.ACTION_GET_CONTENT)
             .putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true)
-        startActivityForResult(Intent.createChooser(gifGalleryIntent, "Select a file"), REQUEST_CODE_GIF)
+        startActivityForResult(Intent.createChooser(gifGalleryIntent, "Select a file"), RequestCodes.GALLERY_GIF.ordinal)
     }
 
 
@@ -125,7 +124,7 @@ class MainActivity : AppCompatActivity() {
             .setType("video/mp4")
             .setAction(Intent.ACTION_GET_CONTENT)
             .putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true)
-        startActivityForResult(Intent.createChooser(videoGalleryIntent, "Select a file"), REQUEST_CODE_VIDEO_FROM_GALLERY)
+        startActivityForResult(Intent.createChooser(videoGalleryIntent, "Select a file"), RequestCodes.GALLERY_VIDEO.ordinal)
     }
 
     fun fsideCard_onClick(view:View)
@@ -144,7 +143,7 @@ class MainActivity : AppCompatActivity() {
         if (event?.action == MotionEvent.ACTION_DOWN)
         {
             photoPopup.dismiss()
-            activity_main_constraintLayout.foreground = null
+            binding.root.foreground = null
             turnCards_isEnable(true)
             popup_isActive = false
 //            popup_dismissed = true
@@ -157,11 +156,12 @@ class MainActivity : AppCompatActivity() {
 
         if(popup_isActive) {
             photoPopup.dismiss()
-            activity_main_constraintLayout.foreground = null
+            binding.root.foreground = null
             turnCards_isEnable(true)
         }
         else
             return super.onBackPressed()
+
     }
 
 
@@ -172,7 +172,7 @@ class MainActivity : AppCompatActivity() {
         if (resultCode == RESULT_OK) {
             val uri_stringArrayList :ArrayList<String> = ArrayList()
             when (requestCode) {
-                REQUEST_CODE_GALLERY -> {
+                RequestCodes.GALLERY_PHOTO.ordinal -> {
                     val photoIntent = Intent(this, PhotoActivity::class.java)
                     if (data?.clipData != null) {
                         for (i in 0 until data.clipData!!.itemCount) {
@@ -185,14 +185,14 @@ class MainActivity : AppCompatActivity() {
                     startActivity(photoIntent)
                 }
 
-                REQUEST_CODE_PHOTO_CAPTURE -> {
+                RequestCodes.CAPTURE_PHOTO.ordinal -> {
                     val photoIntent = Intent(this, PhotoActivity::class.java)
                     uri_stringArrayList.add(newPhotoUri.toString())
                     photoIntent.putExtra("photosUri_stringArrayList", uri_stringArrayList)
                     startActivity(photoIntent)
                 }
 
-                REQUEST_CODE_GIF ->{
+                RequestCodes.GALLERY_GIF.ordinal ->{
                     val gifIntent = Intent(this,GifActivity::class.java)
 
                     if (data?.clipData!=null)
@@ -210,7 +210,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(gifIntent)
                 }
 
-                REQUEST_CODE_VIDEO_FROM_GALLERY ->{
+                RequestCodes.GALLERY_VIDEO.ordinal ->{
                     val videoIntent = Intent(this,VideoActivity::class.java)
                     if (data?.clipData!=null)
                     {
@@ -235,10 +235,10 @@ class MainActivity : AppCompatActivity() {
 
     fun turnCards_isEnable(state:Boolean)
     {
-        photoCard.isClickable = state
-        gifCard.isClickable = state
-        videoCard.isClickable = state
-        exitCard.isClickable = state
+        binding.photoCard.isClickable = state
+        binding.gifCard.isClickable = state
+        binding.videoCard.isClickable = state
+        binding.exitCard.isClickable = state
     }
 
     @Throws(IOException::class)

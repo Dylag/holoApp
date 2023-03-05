@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity" android:foreground="@color/darkerColor"
-        android:id="@+id/activity_main_constraintLayout">
+        android:id="@+id/rootView">
 
     <androidx.gridlayout.widget.GridLayout
             android:layout_width="wrap_content"
@@ -25,7 +25,7 @@
                 android:layout_margin="20dp"
                 app:layout_row="0"
                 app:layout_column="0"
-                app:layout_columnSpan="2" android:id="@+id/activity_main_debugLabel" android:textSize="34sp"/>
+                app:layout_columnSpan="2" android:id="@+id/debugTV" android:textSize="34sp"/>
 
         <androidx.cardview.widget.CardView
                 android:layout_width="140dp"
