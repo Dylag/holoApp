@@ -48,8 +48,8 @@ class PhotoActivity : AppCompatActivity() {
 
         Log.d("personalMaid", "photo on create")
 
-        darkerForegroundColor = binding.root.foreground
-        binding.root.foreground = null
+        darkerForegroundColor = binding.controlGrid.foreground
+        binding.controlGrid.foreground = null
 
         val dm = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(dm)
@@ -116,6 +116,9 @@ class PhotoActivity : AppCompatActivity() {
         {
             binding.nextImageCard.isClickable = false
             binding.prevImageCard.isClickable = false
+
+            binding.nextImageCard.foreground = darkerForegroundColor
+            binding.prevImageCard.foreground = darkerForegroundColor
         }
 
         photoPopup = PopupWindow(this)
@@ -167,7 +170,6 @@ class PhotoActivity : AppCompatActivity() {
             photoPopup.dismiss()
             popup_isActive = false
             cards_turnIsClickable()
-            binding.root.foreground = null
         }
     }
 
@@ -190,7 +192,8 @@ class PhotoActivity : AppCompatActivity() {
     {
         cards_turnIsClickable()
         binding.correctImageTIV.visibility = View.VISIBLE
-        binding.root.foreground = darkerForegroundColor
+
+        binding.controlGrid.foreground = darkerForegroundColor
 
     }
 
@@ -237,8 +240,6 @@ class PhotoActivity : AppCompatActivity() {
                 binding.nextImageCard.isClickable = true
                 binding.prevImageCard.isClickable = true
             }
-
-
     }
 
     fun setImageUri()
@@ -285,30 +286,33 @@ class PhotoActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == RESULT_OK) {
-            val uri_stringArrayList :ArrayList<String> = ArrayList()
+            val uris :ArrayList<String> = ArrayList()
             when (requestCode) {
                 RequestCodes.GALLERY_PHOTO.ordinal -> {
-                    val photoIntent = Intent(this, PhotoActivity::class.java)
                     if (data?.clipData != null) {
                         for (i in 0 until data.clipData!!.itemCount) {
-                            uri_stringArrayList.add(data.clipData!!.getItemAt(i).uri.toString())
+                            uris.add(data.clipData!!.getItemAt(i).uri.toString())
                         }
                     } else if (data?.data != null) {
-                        uri_stringArrayList.add(data.data!!.toString())
+                        uris.add(data.data!!.toString())
                     }
 
                 }
 
                 RequestCodes.CAPTURE_PHOTO.ordinal -> {
-                    val photoIntent = Intent(this, PhotoActivity::class.java)
-                    uri_stringArrayList.add(newPhotoUri.toString())
+                    uris.add(newPhotoUri.toString())
                 }
             }
 
-            images.addAll(uri_stringArrayList)
+            images.addAll(uris)
 
             binding.prevImageCard.isClickable = true
             binding.nextImageCard.isClickable = true
+
+            binding.nextImageCard.foreground  =null
+            binding.prevImageCard.foreground = null
+
+
 
         }
         makingChooseIntent = false

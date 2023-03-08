@@ -17,8 +17,8 @@ class FsideActivity : AppCompatActivity() {
 
     var darkerForegroundColor: Drawable? = null
 
-//    var photoSets = ArrayList<MutableMap<Int, Uri?>>(1)
-   // var photoSets = ArrayList<MutableMap<Int, Uri?>>()
+    //var photoSets = ArrayList<MutableMap<Int, Uri?>>(1)
+    // var photoSets = ArrayList<MutableMap<Int, Uri?>>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -6,35 +6,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".VideoActivity">
-    <androidx.cardview.widget.CardView
-            android:layout_width="50dp"
-            android:layout_height="50dp" android:id="@+id/activity_video_centralCardView"
-            app:cardBackgroundColor="@color/redHalf" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-    <com.warnyul.android.widget.FastVideoView
-            android:layout_width="100dp"
-            android:layout_height="100dp" android:id="@+id/videoViewTop"
-            app:layout_constraintBottom_toTopOf="@+id/activity_video_centralCardView"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="25dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    <com.warnyul.android.widget.FastVideoView
-            android:layout_width="100dp"
-            android:layout_height="100dp" android:id="@+id/videoViewBottom"
-            app:layout_constraintTop_toBottomOf="@+id/activity_video_centralCardView" android:layout_marginTop="25dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:rotation="180"/>
-    <com.warnyul.android.widget.FastVideoView
-            android:layout_width="100dp"
-            android:layout_height="100dp" android:id="@+id/videoViewRight"
-            app:layout_constraintStart_toEndOf="@+id/activity_video_centralCardView"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="25dp" app:layout_constraintVertical_bias="0.499" android:rotation="90"/>
-    <com.warnyul.android.widget.FastVideoView
-            android:layout_width="100dp"
-            android:layout_height="100dp" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/videoViewLeft"
-            app:layout_constraintVertical_bias="0.499"
-            app:layout_constraintEnd_toStartOf="@+id/activity_video_centralCardView" android:layout_marginRight="25dp"
-            android:rotation="-90"/>
+    <GridView
+            android:id = "@+id/videoGrid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+        <com.warnyul.android.widget.FastVideoView
+                android:layout_width="100dp"
+                android:layout_height="100dp" android:id="@+id/videoViewBottom"
+                android:layout_marginTop="25dp"
+                android:rotation="180" tools:ignore="SpeakableTextPresentCheck"/>
+        <com.warnyul.android.widget.FastVideoView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/videoViewLeft"
+                android:layout_marginRight="25dp"
+                android:rotation="-90" tools:ignore="SpeakableTextPresentCheck"/>
+        <com.warnyul.android.widget.FastVideoView
+                android:layout_width="100dp"
+                android:layout_height="100dp" android:id="@+id/videoViewTop"
+                android:layout_marginBottom="25dp"
+                tools:ignore="SpeakableTextPresentCheck"/>
+        <androidx.cardview.widget.CardView
+                android:layout_width="50dp"
+                android:layout_height="50dp" android:id="@+id/activity_video_centralCardView"
+                app:cardBackgroundColor="@color/redHalf"
+        />
+        <com.warnyul.android.widget.FastVideoView
+                android:layout_width="100dp"
+                android:layout_height="100dp" android:id="@+id/videoViewRight"
+                android:layout_marginStart="25dp" android:rotation="90"
+                tools:ignore="SpeakableTextPresentCheck"/>
+    </GridView>
 </androidx.constraintlayout.widget.ConstraintLayout>
