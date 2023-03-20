@@ -73,7 +73,6 @@ class MainActivity : AppCompatActivity() {
                         createImageFile()
                     } catch (ex: IOException) {
                         // Error occurred while creating the File
-
                         null
                     }
                     // Continue only if the File was successfully created
@@ -120,12 +119,10 @@ class MainActivity : AppCompatActivity() {
 
     fun videoCard_onClick(view:View)
     {
-        startActivity(Intent(this,VideoActivity::class.java))
-
         val videoIntent = Intent()
             .setType("video/*")
             .setAction(Intent.ACTION_GET_CONTENT)
-            .putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true)
+            .putExtra(Intent.EXTRA_ALLOW_MULTIPLE,false)
         startActivityForResult(videoIntent, RequestCodes.GALLERY_VIDEO.ordinal)
     }
 
@@ -142,16 +139,11 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        Log.d("touch",event?.action.toString())
-//        if (event?.action == MotionEvent.ACTION_UP)
-//            popup_dismissed = false
-        if (event?.action == MotionEvent.ACTION_DOWN)
-        {
+        if (event?.action == MotionEvent.ACTION_DOWN){
             photoPopup.dismiss()
             binding.root.foreground = null
             turnCards_isEnable(true)
             popup_isActive = false
-//            popup_dismissed = true
         }
         return super.onTouchEvent(event)
     }
@@ -210,18 +202,10 @@ class MainActivity : AppCompatActivity() {
 
                 RequestCodes.GALLERY_VIDEO.ordinal ->{
                     val videoIntent = Intent(this,VideoActivity::class.java)
-
-
-                    if(data?.clipData!=null)
-                        for(i in 0 until data.clipData!!.itemCount)
-                            uris.add(data.clipData!!.getItemAt(i).uri.toString())
-
-                    else if(data!!.data!=null)
-                        uris.add(data.data!!.toString())
-
-
-                    videoIntent.putExtra("uris",uris)
-                    startActivity(videoIntent)
+                    if(data!!.data!=null) {
+                        videoIntent.putExtra("uri", data.data.toString() )
+                        startActivity(videoIntent)
+                    }
 
 
 

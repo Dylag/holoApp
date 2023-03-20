@@ -25,7 +25,7 @@
                 android:layout_marginBottom="20dp" android:layout_marginRight="10dp" android:id="@+id/prevGifCard"
                 android:onClick="switchToPreviousGif">
             <TextView
-                    android:text="@string/activity_gif_previous_gif"
+                    android:text="@string/activity_gif_previousGif"
                     android:id="@+id/textView3"
                     style="@style/textViewInCardStyle" android:layout_margin="5dp"/>
         </androidx.cardview.widget.CardView>
@@ -40,7 +40,7 @@
                 android:layout_marginRight="10dp" android:layout_marginBottom="20dp" android:id="@+id/nextGifCard"
                 android:onClick="switchToNextGif">
             <TextView
-                    android:text="@string/activity_gif_next_gif"
+                    android:text="@string/activity_gif_nextGif"
                     android:id="@+id/textView4"
                     style="@style/textViewInCardStyle"/>
         </androidx.cardview.widget.CardView>

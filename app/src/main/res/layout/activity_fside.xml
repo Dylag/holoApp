@@ -37,7 +37,7 @@
                 android:layout_marginTop="10dp" android:layout_marginLeft="20dp" android:layout_marginRight="10dp"
                 android:layout_marginBottom="20dp" android:clickable="false">
             <TextView
-                    android:text="@string/activity_photo_previous_image"
+                    android:text="@string/activity_photo_previousImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/textViewInCardStyle"/>
@@ -56,7 +56,7 @@
                 android:layout_marginLeft="10dp" android:layout_marginTop="10dp" android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp" android:clickable="false">
             <TextView
-                    android:text="@string/activity_photo_next_image"
+                    android:text="@string/activity_photo_nextImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/textViewInCardStyle"/>
@@ -74,7 +74,7 @@
                 android:layout_marginLeft="20dp" android:layout_marginTop="10dp" android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp" android:clickable="false">
             <TextView
-                    android:text="@string/activity_photo_choose_new_image"
+                    android:text="@string/activity_photo_chooseNewImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/textViewInCardStyle"/>
@@ -93,7 +93,7 @@
                 android:layout_marginLeft="10dp" android:layout_marginTop="10dp" android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp" android:onClick="correctImageCard_onClick">
             <TextView
-                    android:text="@string/activity_photo_resize_image"
+                    android:text="@string/activity_photo_resizeImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/textViewInCardStyle"/>
@@ -192,7 +192,7 @@
                 android:onClick="addForwardCard_onClick">
 
             <TextView
-                    android:text="add forward"
+                    android:text="@string/activity_fside_addForward"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/textViewInCardStyle"/>
@@ -209,7 +209,7 @@
                 android:layout_margin="20dp" android:id="@+id/addLeftCard" android:onClick="addLeftCard_onClick">
 
             <TextView
-                    android:text="add left"
+                    android:text="@string/activity_fside_addLeft"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/textViewInCardStyle"/>
@@ -227,7 +227,7 @@
                 android:onClick="addBackwardCard_onClick">
 
             <TextView
-                    android:text="add backward"
+                    android:text="@string/activity_fside_addBackward"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/textViewInCardStyle"/>
@@ -244,7 +244,7 @@
                 android:layout_margin="20dp" android:id="@+id/addRightCard" android:onClick="addRightCard_onClick">
 
             <TextView
-                    android:text="add right"
+                    android:text="@string/activity_fside_addRight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/textViewInCardStyle"/>

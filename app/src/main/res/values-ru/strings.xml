@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="activity_main_choose_an_image">Выберете опцию</string>
+    <string name="activity_main_chooseAnImage">Выберете опцию</string>
     <string name="activity_main_gif">Gif</string>
     <string name="activity_main_video">Видео</string>
     <string name="activity_main_exit">Выход</string>
-    <string name="layout_photo_popup_from_gallery">Из галереи...</string>
-    <string name="layout_photo_popup_take_a_photo">Новое изображение...</string>
-    <string name="activity_photo_choose_new_image">Выбрать новое изображение</string>
-    <string name="activity_photo_resize_image">Править изображение</string>
-    <string name="activity_photo_previous_image">Предыдущее изображение</string>
-    <string name="activity_photo_next_image">Следующее изображение</string>
-    <string name="activity_gif_previous_gif">Предыдущее Gif</string>
-    <string name="activity_gif_next_gif">Следущее Gif</string>
-    <string name="activity_main_static_image">Статическое изображение</string>
+    <string name="layout_photo_popup_fromGallery">Из галереи...</string>
+    <string name="layout_photo_popup_takeAPhoto">Новое изображение...</string>
+    <string name="activity_photo_chooseNewImage">Выбрать новое изображение</string>
+    <string name="activity_photo_resizeImage">Править изображение</string>
+    <string name="activity_photo_previousImage">Предыдущее изображение</string>
+    <string name="activity_photo_nextImage">Следующее изображение</string>
+    <string name="activity_gif_previousGif">Предыдущее Gif</string>
+    <string name="activity_gif_nextGif">Следущее Gif</string>
+    <string name="activity_main_staticImage">Статическое изображение</string>
     <string name="activity_main_4side">4 - стороннее изображение</string>
+    <string name="activity_fside_addForward">Добавить вид спереди</string>
+    <string name="activity_fside_addLeft">Добавить вид слева</string>
+    <string name="activity_fside_addBackward">Добавить вид сза ди</string>
+    <string name="activity_fside_addRight">Добавить вид справа</string>
+    <string name="activity_spinning_tempString">Добавьте изображения!</string>
+    <string name="activity_video_chooseNewVideo">Выбрать новое видео...</string>
+    <string name="activity_video_videoIsPreparing">Видео готовится...</string>
+    <string name="activity_video_videoIsReady">Видео готово!</string>
+    <string name="activity_main_spinningImage">Вращение изображения</string>
 </resources>

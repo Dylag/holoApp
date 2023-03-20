@@ -42,7 +42,7 @@
                 android:layout_marginLeft="20dp" android:layout_marginTop="10dp" android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp" android:onClick="chooseNewImageCard_onClick">
             <TextView
-                    android:text="@string/activity_photo_choose_new_image"
+                    android:text="@string/activity_photo_chooseNewImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/textViewInCardStyle"/>
@@ -61,7 +61,7 @@
                 android:layout_marginLeft="10dp" android:layout_marginTop="10dp" android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp" android:clickable="false">
             <TextView
-                    android:text="@string/activity_photo_resize_image"
+                    android:text="@string/activity_photo_resizeImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/textViewInCardStyle"/>
@@ -158,7 +158,7 @@
                 android:clickable="false">
 
             <TextView
-                    android:text="Add your images!"
+                    android:text="@string/activity_spinning_tempString"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/textViewInCardStyle"/>
@@ -175,7 +175,7 @@
                 android:layout_margin="20dp" android:id="@+id/addLeftCard" android:clickable="false">
 
             <TextView
-                    android:text="Add your images!"
+                    android:text="@string/activity_spinning_tempString"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/textViewInCardStyle"/>
@@ -193,7 +193,7 @@
                 android:clickable="false">
 
             <TextView
-                    android:text="Add your images!"
+                    android:text="@string/activity_spinning_tempString"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/textViewInCardStyle"/>
@@ -210,7 +210,7 @@
                 android:layout_margin="20dp" android:id="@+id/addRightCard" android:clickable="false">
 
             <TextView
-                    android:text="Add your images!"
+                    android:text="@string/activity_spinning_tempString"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/textViewInCardStyle"/>

@@ -31,70 +31,14 @@
                 app:layout_columnWeight="1"
                 app:layout_rowWeight="1"
                 style="@style/mainClickableCardStyle"
-                app:layout_row="1"
-                app:layout_column="0"
-
-                android:id="@+id/prevVideoCard" android:onClick="switchToPreviousImage"
-                android:layout_marginTop="10dp" android:layout_marginLeft="20dp" android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp">
-            <TextView
-                    android:text="@string/activity_photo_previous_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/textViewInCardStyle"/>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
-                style="@style/mainClickableCardStyle"
-                app:layout_row="1"
-                app:layout_column="1"
-
-                android:id="@+id/nextVideoCard" android:onClick="switchToNextImage"
-                android:layout_marginLeft="10dp" android:layout_marginTop="10dp" android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp">
-            <TextView
-                    android:text="@string/activity_photo_next_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/textViewInCardStyle"/>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
-                style="@style/mainClickableCardStyle"
                 app:layout_row="0"
                 app:layout_column="0"
-
+                android:clickable = "false"
                 android:id="@+id/chooseNewVideoCard"
-                android:layout_marginLeft="20dp" android:layout_marginTop="10dp" android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp" android:onClick="chooseNewPhoto">
+                android:layout_marginLeft="20dp" android:layout_marginTop="20dp" android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp">
             <TextView
-                    android:text="@string/activity_photo_choose_new_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/textViewInCardStyle"/>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_columnWeight="1"
-                app:layout_rowWeight="1"
-                style="@style/mainClickableCardStyle"
-                app:layout_row="0"
-                app:layout_column="1"
-
-                android:id="@+id/correctVideoCard"
-                android:layout_marginLeft="10dp" android:layout_marginTop="10dp" android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp" android:onClick="correctImage">
-            <TextView
-                    android:text="@string/activity_photo_resize_image"
+                    android:text="@string/activity_video_chooseNewVideo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/textViewInCardStyle"/>

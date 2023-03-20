@@ -22,7 +22,6 @@ class SpinningActivity : AppCompatActivity() {
     var imagesSources:ArrayList<Uri> = arrayListOf()
 
     var fps = 1
-
     private val timer = object: CountDownTimer(86400000, 1) {
         var time = 0
         var delay = 0f
@@ -36,19 +35,10 @@ class SpinningActivity : AppCompatActivity() {
             }
 
         }
-
         private fun changeImages()
         {
-            for(i in 0 until 4) {
+            for(i in 0 until 4)
                 ids[i] = (ids[i] + 1) % imagesSources.count()
-            }
-
-            runBlocking {
-                launch  {binding.imageViewTop.setImageURI(imagesSources[ids[0]]); binding.imageViewTop.setZoom(binding.correctImageTIV)}
-                launch  {binding.imageViewRight.setImageURI(imagesSources[ids[1]]); binding.imageViewRight.setZoom(binding.correctImageTIV)}
-                launch  {binding.imageViewBottom.setImageURI(imagesSources[ids[2]]); binding.imageViewBottom.setZoom(binding.correctImageTIV)}
-                launch  {binding.imageViewLeft.setImageURI(imagesSources[ids[3]]); binding.imageViewLeft.setZoom(binding.correctImageTIV)}
-            }
 
             binding.imageViewTop.setImageURI(imagesSources[ids[0]]); binding.imageViewTop.setZoom(binding.correctImageTIV)
             binding.imageViewRight.setImageURI(imagesSources[ids[1]]); binding.imageViewRight.setZoom(binding.correctImageTIV)
@@ -56,16 +46,15 @@ class SpinningActivity : AppCompatActivity() {
             binding.imageViewLeft.setImageURI(imagesSources[ids[3]]); binding.imageViewLeft.setZoom(binding.correctImageTIV)
 
             Log.d("maid", "bottom ${binding.imageViewBottom.scrollPosition} TIV ${binding.correctImageTIV.scrollPosition}")
-
         }
 
-        fun setIds()
+        fun getIds()
         {
             when (imagesSources.count())
             {
                 4->{ids = arrayListOf(0,1,2,3)}
                 8->{ids = arrayListOf(0,2,4,6)}
-                16->{ids = arrayListOf(0,3,6,9)}
+                16->{ids = arrayListOf(0,4,8,12)}
             }
         }
 
@@ -83,7 +72,7 @@ class SpinningActivity : AppCompatActivity() {
         binding.controlGrid.foreground = null
         binding.delaySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                var fps:Float = (binding.delaySeekBar.progress)/20f
+                val fps = (binding.delaySeekBar.progress)/20f
                 binding.debugTV.text = fps.toString()
 
                 timer.delay = 1000f/fps
@@ -194,7 +183,7 @@ class SpinningActivity : AppCompatActivity() {
                     for (i in 0 until data.clipData!!.itemCount)
                         imagesSources.add(data.clipData!!.getItemAt(i).uri)
 
-                    timer.setIds()
+                    timer.getIds()
                     timer.start()
                 }
             }

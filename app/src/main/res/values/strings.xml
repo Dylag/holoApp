@@ -1,21 +1,34 @@
 <resources>
     <string name="app_name" translatable="false">HoloShower</string>
-    <string name="activity_main_choose_an_image">Choose an option</string>
-    <string name="activity_main_static_image">Static image</string>
+    <string name="activity_main_chooseAnImage">Choose an option</string>
+    <string name="activity_main_staticImage">Static image</string>
     <string name="activity_main_gif">Gif</string>
-    <string name="activity_main_video">Video</string>
     <string name="activity_main_4side">4-side image</string>
+    <string name="activity_main_spinningImage">Spinning image</string>
+    <string name="activity_main_video">Video</string>
     <string name="activity_main_exit">Exit</string>
 
 
-    <string name="layout_photo_popup_from_gallery">From gallery…</string>
-    <string name="layout_photo_popup_take_a_photo">Take a photo…</string>
+    <string name="layout_photo_popup_fromGallery">From gallery…</string>
+    <string name="layout_photo_popup_takeAPhoto">Take a photo…</string>
 
-    <string name="activity_photo_choose_new_image">Choose new image</string>
-    <string name="activity_photo_resize_image">Resize image</string>
-    <string name="activity_photo_previous_image">Previous image</string>
-    <string name="activity_photo_next_image">Next image</string>
+    <string name="activity_photo_chooseNewImage">Choose new image</string>
+    <string name="activity_photo_resizeImage">Resize image</string>
+    <string name="activity_photo_previousImage">Previous image</string>
+    <string name="activity_photo_nextImage">Next image</string>
 
-    <string name="activity_gif_previous_gif">Previous gif</string>
-    <string name="activity_gif_next_gif">Next gif</string>
+    <string name="activity_gif_previousGif">Previous gif</string>
+    <string name="activity_gif_nextGif">Next gif</string>
+
+    <string name="activity_fside_addForward">add forward view</string>
+    <string name="activity_fside_addLeft">add left view</string>
+    <string name="activity_fside_addBackward">add backward view</string>
+    <string name="activity_fside_addRight">add right view</string>
+
+    <string name="activity_spinning_tempString">Add your images!</string>
+
+    <string name="activity_video_chooseNewVideo">Choose new video</string>
+    <string name="activity_video_videoIsPreparing">Video is preparing</string>
+    <string name="activity_video_videoIsReady">Video is ready!</string>
+
 </resources>

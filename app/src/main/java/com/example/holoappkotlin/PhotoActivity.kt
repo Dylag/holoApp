@@ -222,7 +222,6 @@ class PhotoActivity : AppCompatActivity() {
             cards_turnIsClickable()
             binding.root.foreground = null
         }
-
     }
 
     fun cards_turnIsClickable()
