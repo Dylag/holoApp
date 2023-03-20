@@ -120,11 +120,13 @@ class MainActivity : AppCompatActivity() {
 
     fun videoCard_onClick(view:View)
     {
-        val videoGalleryIntent = Intent()
-            .setType("video/mp4")
+        startActivity(Intent(this,VideoActivity::class.java))
+
+        val videoIntent = Intent()
+            .setType("video/*")
             .setAction(Intent.ACTION_GET_CONTENT)
             .putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true)
-        startActivityForResult(Intent.createChooser(videoGalleryIntent, "Select a file"), RequestCodes.GALLERY_VIDEO.ordinal)
+        startActivityForResult(videoIntent, RequestCodes.GALLERY_VIDEO.ordinal)
     }
 
     fun fsideCard_onClick(view:View)
@@ -136,6 +138,9 @@ class MainActivity : AppCompatActivity() {
     {
         startActivity(Intent(this, SpinningActivity::class.java))
     }
+
+
+
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         Log.d("touch",event?.action.toString())
 //        if (event?.action == MotionEvent.ACTION_UP)
@@ -161,34 +166,31 @@ class MainActivity : AppCompatActivity() {
         }
         else
             return super.onBackPressed()
-
     }
-
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == RESULT_OK) {
-            val uri_stringArrayList :ArrayList<String> = ArrayList()
+            val uris :ArrayList<String> = ArrayList()
             when (requestCode) {
                 RequestCodes.GALLERY_PHOTO.ordinal -> {
                     val photoIntent = Intent(this, PhotoActivity::class.java)
-                    if (data?.clipData != null) {
-                        for (i in 0 until data.clipData!!.itemCount) {
-                            uri_stringArrayList.add(data.clipData!!.getItemAt(i).uri.toString())
-                        }
-                    } else if (data?.data != null) {
-                        uri_stringArrayList.add(data.data!!.toString())
-                    }
-                    photoIntent.putExtra("photosUri_stringArrayList", uri_stringArrayList)
+                    if (data?.clipData != null)
+                        for (i in 0 until data.clipData!!.itemCount)
+                            uris.add(data.clipData!!.getItemAt(i).uri.toString())
+
+                    else if (data?.data != null)
+                        uris.add(data.data!!.toString())
+
+                    photoIntent.putExtra("photosUri_stringArrayList", uris)
                     startActivity(photoIntent)
                 }
 
                 RequestCodes.CAPTURE_PHOTO.ordinal -> {
                     val photoIntent = Intent(this, PhotoActivity::class.java)
-                    uri_stringArrayList.add(newPhotoUri.toString())
-                    photoIntent.putExtra("photosUri_stringArrayList", uri_stringArrayList)
+                    uris.add(newPhotoUri.toString())
+                    photoIntent.putExtra("photosUri_stringArrayList", uris)
                     startActivity(photoIntent)
                 }
 
@@ -196,35 +198,46 @@ class MainActivity : AppCompatActivity() {
                     val gifIntent = Intent(this,GifActivity::class.java)
 
                     if (data?.clipData!=null)
-                    {
                         for (i in 0 until data.clipData!!.itemCount )
-                        {
-                            uri_stringArrayList.add(data.clipData!!.getItemAt(i).uri.toString())
-                        }
-                    }
+                            uris.add(data.clipData!!.getItemAt(i).uri.toString())
+
                     else if (data?.data!=null)
-                    {
-                        uri_stringArrayList.add(data.data!!.toString())
-                    }
-                    gifIntent.putExtra("uris",uri_stringArrayList)
+                        uris.add(data.data!!.toString())
+
+                    gifIntent.putExtra("uris",uris)
                     startActivity(gifIntent)
                 }
 
                 RequestCodes.GALLERY_VIDEO.ordinal ->{
                     val videoIntent = Intent(this,VideoActivity::class.java)
-                    if (data?.clipData!=null)
-                    {
-                        for (i in 0 until data.clipData!!.itemCount)
-                        {
-                            uri_stringArrayList.add(data.clipData!!.getItemAt(i).uri.toString())
-                        }
-                    }
-                    else if (data?.data!=null)
-                    {
-                        uri_stringArrayList.add(data.data!!.toString())
-                    }
-                    videoIntent.putExtra("uris",uri_stringArrayList)
+
+
+                    if(data?.clipData!=null)
+                        for(i in 0 until data.clipData!!.itemCount)
+                            uris.add(data.clipData!!.getItemAt(i).uri.toString())
+
+                    else if(data!!.data!=null)
+                        uris.add(data.data!!.toString())
+
+
+                    videoIntent.putExtra("uris",uris)
                     startActivity(videoIntent)
+
+
+
+//                    if (data?.clipData!=null)
+//                    {
+//                        for (i in 0 until data.clipData!!.itemCount)
+//                        {
+//                            uri_stringArrayList.add(data.clipData!!.getItemAt(i).uri.toString())
+//                        }
+//                    }
+//                    else if (data?.data!=null)
+//                    {
+//                        uri_stringArrayList.add(data.data!!.toString())
+//                    }
+//                    videoIntent.putExtra("uris",uri_stringArrayList)
+//                    startActivity(videoIntent)
                 }
             }
 

@@ -88,8 +88,8 @@
                 android:layout_height="100dp"
                 style="@style/mainActivityCards"
                 app:layout_row="3" android:id="@+id/videoCard"
-                app:layout_columnSpan="2" android:clickable="false">
-
+                app:layout_columnSpan="2"
+                android:onClick = "videoCard_onClick">
             <TextView
                     android:text="@string/activity_main_video"
                     style="@style/textViewInCardStyle"/>

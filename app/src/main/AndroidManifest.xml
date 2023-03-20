@@ -20,14 +20,14 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.HoloAppKotlin">
         <activity
+                android:name=".VideoActivity"
+                android:exported="false"/>
+        <activity
                 android:name=".SpinningActivity"
                 android:exported="false"/>
         <activity
                 android:name=".FsideActivity"
                 android:exported="false"/>
-        <activity
-                android:name=".VideoActivity"
-                android:exported="true"/>
         <activity
                 android:name=".GifActivity"
                 android:exported="true"/>
